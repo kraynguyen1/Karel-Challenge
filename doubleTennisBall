@@ -1,0 +1,90 @@
+/* Karel doubles the tennis balls and goes back to 
+* his original position
+*
+* Author: Kray Nguyen
+* Date: 01/29/2018
+*/
+
+function start(){
+    transferBalls();
+    doubleBalls();
+    
+    goToFinish();
+}
+
+/* This function has Karel divide the numbers of balls in half
+* Precondition: Karel faces east at (1,1)
+* Postcondition: Karel faces east at (2,1)
+*/
+
+function transferBalls(){
+    move();
+    
+    // Karel takes one ball, moves forward, puts down a ball, moves
+    // forward, and puts down another ball. He then returns to his
+    // orginal take ball position and do this again until no balls
+    // left
+    while(ballsPresent()){
+        takeBall();
+        for(var i = 0; i < 2; i++){
+            move();
+            putBall();
+        }
+        turnAround();
+        move();
+        move();
+        turnAround();
+    }
+}
+
+/* This function has Karel process to double the balls 
+* Precondition: Karel faces east at (2,1)
+* postcondition: Karel faces west at (4,1)
+*/
+
+function doubleBalls(){
+    move();
+    turnAround();
+    // Karel takes one ball, move 1 step forward, put down a ball, 
+    // and he returns to his original take ball position and do this
+    // again until no balls left
+    while(ballsPresent()){
+        takeBall();
+        move();
+        putBall();
+        turnAround();
+        move();
+        turnAround();
+    }
+    turnAround();
+    move();
+    turnAround();
+    
+    // Karel takes one ball, move 2 steps forward, put down a ball,
+    // and he returns to his original take ball position and do this
+    // again until no balls left
+    while(ballsPresent()){
+        takeBall();
+        move();
+        move();
+        putBall();
+        turnAround();
+        move();
+        move();
+        turnAround();
+    }
+}   
+
+/* This function has Karel go to the finish
+* Precondition: Karel faces west at (4,1)
+* Postcondition: Karel faces east at (1,1)
+*/ 
+
+function goToFinish(){
+    for(var i = 0; i < 3; i++){
+        move();
+    }
+    turnAround();
+}
+
+    
